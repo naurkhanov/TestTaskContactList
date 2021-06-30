@@ -1,0 +1,48 @@
+{
+  "admins": [
+    {
+      "id": 1,
+      "login": "admin",
+      "password": "12345",
+      "token": "qwerty1212e12qw3dword1oc1Eqeqeq"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 4,
+      "firstName": "Марк",
+      "lastName": "Цукерберг",
+      "phoneNumber": "89889989989"
+    },
+    {
+      "id": 7,
+      "firstName": "Mira",
+      "lastName": "Mirova",
+      "phoneNumber": "8844568431"
+    },
+    {
+      "id": 8,
+      "firstName": "Дэн",
+      "lastName": "Абрамов",
+      "phoneNumber": "9898989"
+    },
+    {
+      "id": 9,
+      "firstName": "Ден",
+      "lastName": "Обычный",
+      "phoneNumber": "121334234"
+    },
+    {
+      "id": 14,
+      "firstName": "Den",
+      "lastName": "C  посёлка",
+      "phoneNumber": "88005553535"
+    },
+    {
+      "id": 15,
+      "firstName": "Deni",
+      "lastName": "Naurkhanov",
+      "phoneNumber": "89534021569"
+    }
+  ]
+}

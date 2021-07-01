@@ -10,8 +10,11 @@ import {
 import InputPassword from './InputPassword';
 import SendButton from './SendButton';
 import InputLogin from './InputLogin';
+import { useSelector } from 'react-redux';
 
 function AuthorizationMain() {
+  const error = useSelector((state) => state.application.error);
+
   return (
     <AutorizationWrap>
       <MainBlock>
@@ -20,7 +23,7 @@ function AuthorizationMain() {
         </TitleWrap>
         <InputLogin />
         <InputPassword />
-        {/*<TextError>Данные введены не верно</TextError>*/}
+        {error && <TextError>Данные введены не верно</TextError>}
         <SendButton />
         <DemoData>Данные для демо-входа: admin:12345</DemoData>
       </MainBlock>

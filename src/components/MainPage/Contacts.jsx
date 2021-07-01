@@ -7,6 +7,15 @@ import ContactsItems from './ContactsItems';
 function Contacts() {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.application.items);
+  const filterText = useSelector((state) => state.application.filter);
+
+  const FilteredContacts = contacts?.filter((contact) => {
+    const contactInitial =
+      contact.firstName + ' ' + contact.lastName + ' ' + contact.number;
+
+    return contactInitial.toUpperCase().indexOf(filterText.toUpperCase()) > -1;
+  });
+
   useEffect(() => {
     dispatch(loadContacts());
   }, [dispatch]);
@@ -14,7 +23,7 @@ function Contacts() {
     <ContactsMain>
       <ContactsScroll>
         <ContactsWrap>
-          {contacts.map((contacts) => {
+          {FilteredContacts.map((contacts) => {
             return <ContactsItems contacts={contacts} key={contacts.id} />;
           })}
         </ContactsWrap>

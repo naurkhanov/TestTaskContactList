@@ -51,7 +51,7 @@ function IndividualContactInfo() {
 
   useEffect(() => {
     dispatch(loadIndividContact(id));
-  }, [id]);
+  }, [dispatch, id]);
   return (
     <IndividualClientWrap>
       <IndividualTitle>Изменение контакта</IndividualTitle>

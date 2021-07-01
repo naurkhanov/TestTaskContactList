@@ -1,7 +1,11 @@
 const initialState = {
   items: [],
   individContact: {},
-  token: true,
+  token: localStorage.getItem('token'),
+  login: '',
+  password: '',
+  error: false,
+  filter: '',
 };
 
 export const application = (state = initialState, action) => {
@@ -32,12 +36,77 @@ export const application = (state = initialState, action) => {
         ...state,
         items: state.items.filter((item) => item.id !== action.payload),
       };
+
+    case 'set/login':
+      return {
+        ...state,
+        login: action.payload,
+      };
+    case 'set/password':
+      return {
+        ...state,
+        password: action.payload,
+      };
+    case 'logIn/succeed':
+      return {
+        ...state,
+        token: action.payload,
+        error: false,
+      };
+    case 'logIn/error':
+      return {
+        ...state,
+        error: true,
+      };
+    case 'set/Filter':
+      return {
+        ...state,
+        filter: action.payload,
+      };
     default:
       return state;
   }
 };
 
 //санки
+
+//авторизация
+export const logIn = (login, password) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'logIn/start',
+    });
+    fetch(
+      `http://localhost:3005/authorization/login=${login}/password=${password}`,
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        localStorage.setItem('token', json);
+        dispatch({
+          type: 'logIn/succeed',
+          payload: json,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        return dispatch({ type: 'logIn/error' });
+      });
+  };
+};
+
+export const setLogin = (login) => {
+  return {
+    type: 'set/login',
+    payload: login,
+  };
+};
+
+export const setPassword = (password) => {
+  return {
+    type: 'set/password',
+    payload: password,
+  };
+};
 
 //подгрузка данных
 export const loadContacts = () => {
@@ -142,5 +211,14 @@ export const deleteContact = (id) => {
           payload: id,
         });
       });
+  };
+};
+
+//фильтрация
+
+export const setFilter = (text) => {
+  return {
+    type: 'set/Filter',
+    payload: text,
   };
 };

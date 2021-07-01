@@ -20,7 +20,6 @@ function ContactsItems({ contacts }) {
             settings
           </span>
         </NavLink>
-        <span className="material-icons">favorite_border</span>
       </IconsWrap>
     </ContactsList>
   );
